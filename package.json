@@ -1,0 +1,9 @@
+{
+  "name": "ag-grid-enterprise",
+  "version": "1.0.0",
+  "description": "grid",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cyanerd/grid.git"
+  }
+}
