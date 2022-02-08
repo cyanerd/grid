@@ -1,5 +1,6 @@
 {
   "name": "ag-grid-enterprise",
+  "main": "./dist/ag-grid-enterprise.cjs.js",
   "version": "1.0.0",
   "description": "grid",
   "repository": {
