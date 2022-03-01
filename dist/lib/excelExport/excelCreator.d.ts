@@ -14,7 +14,8 @@ export declare class ExcelCreator extends BaseCreator<ExcelCell[][], Serializing
     gridOptionsWrapper: GridOptionsWrapper;
     private exportMode;
     postConstruct(): void;
-    protected getDefaultExportParams(): ExcelExportParams | undefined;
+    protected getMergedParams(params?: ExcelExportParams): ExcelExportParams;
+    protected getData(params: ExcelExportParams): string;
     export(userParams?: ExcelExportParams): string;
     exportDataAsExcel(params?: ExcelExportParams): string;
     getDataAsExcel(params?: ExcelExportParams): Blob | string | undefined;
@@ -23,7 +24,6 @@ export declare class ExcelCreator extends BaseCreator<ExcelCell[][], Serializing
     getSheetDataForExcel(params: ExcelExportParams): string;
     getMultipleSheetsAsExcel(params: ExcelExportMultipleSheetParams): Blob | undefined;
     exportMultipleSheetsAsExcel(params: ExcelExportMultipleSheetParams): void;
-    getMimeType(): string;
     getDefaultFileName(): string;
     getDefaultFileExtension(): string;
     createSerializingSession(params: ExcelExportParams): SerializingSession;

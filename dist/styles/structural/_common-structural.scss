@@ -19,7 +19,6 @@ ag-grid, ag-grid-angular, ag-grid-ng2, ag-grid-polymer, ag-grid-aurelia  {
 }
 
 .ag-drag-handle {
-    cursor: move; // IE fallback
     cursor: grab;
 }
 
@@ -485,6 +484,7 @@ ag-grid, ag-grid-angular, ag-grid-ng2, ag-grid-polymer, ag-grid-aurelia  {
 }
 
 .ag-column-drop-cell {
+    position: relative;
     display: flex;
     align-items: center;
 }
@@ -629,6 +629,7 @@ ag-grid, ag-grid-angular, ag-grid-ng2, ag-grid-polymer, ag-grid-aurelia  {
     display: inline-block;
     position: absolute;
     white-space: nowrap;
+    height: 100%;
 }
 
 .ag-cell-value, .ag-group-value {
@@ -644,7 +645,7 @@ ag-grid, ag-grid-angular, ag-grid-ng2, ag-grid-polymer, ag-grid-aurelia  {
 .ag-cell-wrapper {
     display: flex;
     align-items: center;
-    height: 100%;
+    overflow: hidden;
     // adding width: 100% here breaks text-overflow: ellipsis
     // width: 100%;
     &.ag-row-group {
@@ -653,20 +654,21 @@ ag-grid, ag-grid-angular, ag-grid-ng2, ag-grid-polymer, ag-grid-aurelia  {
 }
 
 .ag-sparkline-wrapper {
+    position: absolute;
     height: 100%;
     width: 100%;
+    left: 0;
+    top: 0;
 }
 
 .ag-full-width-row .ag-cell-wrapper.ag-row-group {
     align-items: center;
 }
 
-.ag-cell-normal-height {
-    height: 100%;
-}
-
 .ag-cell-inline-editing {
     z-index: 1;
+
+    .ag-cell-wrapper,
     .ag-cell-edit-wrapper,
     .ag-cell-editor,
     .ag-cell-editor .ag-wrapper,
@@ -1007,14 +1009,10 @@ ag-grid, ag-grid-angular, ag-grid-ng2, ag-grid-polymer, ag-grid-aurelia  {
     z-index: 99999;
 }
 
-.ag-tooltip-reactui {
+.ag-tooltip-custom {
     position: absolute;
     pointer-events: none;
     z-index: 99999;
-    transition: opacity 1s;
-    &.ag-tooltip-hiding {
-        opacity: 0;
-    }
 }
 
 /**
@@ -1167,7 +1165,8 @@ ag-grid, ag-grid-angular, ag-grid-ng2, ag-grid-polymer, ag-grid-aurelia  {
 }
 
 .ag-column-select-column,
-.ag-column-select-column-group {
+.ag-column-select-column-group,
+.ag-select-agg-func-item {
     position: relative;
     align-items: center;
     display: flex;
@@ -1357,12 +1356,6 @@ ag-grid, ag-grid-angular, ag-grid-ng2, ag-grid-polymer, ag-grid-aurelia  {
 
 .ag-group-container-vertical {
     flex-direction: column;
-}
-
-.ag-charts-font-size-color {
-    display: flex;
-    align-self: stretch;
-    justify-content: space-between;
 }
 
 .ag-column-group-icons {

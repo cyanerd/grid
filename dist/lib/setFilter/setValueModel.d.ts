@@ -16,11 +16,9 @@ export declare class SetValueModel implements IEventEmitter {
     private readonly formatter;
     private readonly clientSideValuesExtractor;
     private readonly column;
-    private readonly colDef;
     private readonly doesRowPassOtherFilters;
     private readonly suppressSorting;
     private readonly comparator;
-    private readonly caseSensitive;
     private valuesType;
     private miniFilterText;
     /** Values provided to the filter for use. */
@@ -44,13 +42,13 @@ export declare class SetValueModel implements IEventEmitter {
      * If keepSelection is false, the filter selection will be reset to everything selected,
      * otherwise the current selection will be preserved.
      */
-    refreshValues(keepSelection?: boolean): AgPromise<void>;
+    refreshValues(): AgPromise<void>;
     /**
      * Overrides the current values being used for the set filter.
      * If keepSelection is false, the filter selection will be reset to everything selected,
      * otherwise the current selection will be preserved.
      */
-    overrideValues(valuesToUse: (string | null)[], keepSelection?: boolean): AgPromise<void>;
+    overrideValues(valuesToUse: (string | null)[]): AgPromise<void>;
     refreshAfterAnyFilterChanged(): AgPromise<void>;
     isInitialised(): boolean;
     private updateAllValues;
@@ -68,8 +66,6 @@ export declare class SetValueModel implements IEventEmitter {
     getDisplayedValueCount(): number;
     getDisplayedValue(index: number): string | null;
     hasSelections(): boolean;
-    getUniqueValueCount(): number;
-    getUniqueValue(index: any): string | null;
     getValues(): (string | null)[];
     selectAllMatchingMiniFilter(clearExistingSelection?: boolean): void;
     deselectAllMatchingMiniFilter(): void;

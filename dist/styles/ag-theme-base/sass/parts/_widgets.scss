@@ -214,7 +214,6 @@
     }
 
     .ag-cell-wrapper > *:not(.ag-cell-value):not(.ag-group-value) {
-        height: ag-param(row-height) - 2px; // - 2px to remove effect of cell borders
         display: flex;
         align-items: center;
         flex: none;
@@ -445,6 +444,13 @@
         }
     }
 
+    .ag-tooltip-custom {
+        transition: opacity 1s;
+        &.ag-tooltip-hiding {
+            opacity: 0;
+        }
+    }
+
     // Column select
     @for $i from 1 to 10 {
         .ag-column-select-indent-#{$i} {
@@ -499,7 +505,7 @@
     }
 
     .ag-column-select-virtual-list-item {
-        margin: 0 ag-param(widget-container-horizontal-padding);
+        padding: 0 ag-param(widget-container-horizontal-padding);
     }
 }
 

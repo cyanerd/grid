@@ -1,5 +1,4 @@
-import { Component, IFloatingFilter, IFloatingFilterParams } from 'ag-grid-community';
-import { SetFilterModel } from './setFilterModel';
+import { Component, IFloatingFilter, IFloatingFilterParams, SetFilterModel } from 'ag-grid-community';
 export declare class SetFloatingFilterComp extends Component implements IFloatingFilter {
     private readonly eFloatingFilterText;
     private readonly valueFormatterService;
@@ -10,6 +9,7 @@ export declare class SetFloatingFilterComp extends Component implements IFloatin
     destroy(): void;
     init(params: IFloatingFilterParams): void;
     onParentModelChanged(parentModel: SetFilterModel): void;
+    private parentSetFilterInstance;
     private addAvailableValuesListener;
     private updateFloatingFilterText;
 }
