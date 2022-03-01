@@ -54,7 +54,6 @@ var LicenseManager = /** @class */ (function (_super) {
     }
     LicenseManager_1 = LicenseManager;
     LicenseManager.prototype.validateLicense = function () {
-        console.log('*******1*******');
         return true;
         if (agGridCommunity._.missingOrEmpty(LicenseManager_1.licenseKey)) {
             this.outputMissingLicenseKey();
