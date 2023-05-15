@@ -57140,7 +57140,7 @@ var SetValueModel = /** @class */ (function () {
     SetValueModel.prototype.selectAllMatchingMiniFilter = function (clearExistingSelection) {
         var _this = this;
         if (clearExistingSelection === void 0) { clearExistingSelection = false; }
-        if (this.miniFilterText == null) {
+        if (this.miniFilterText == null && false) {
             // ensure everything is selected
             this.selectedValues = agGridCommunity._.convertToSet(this.allValues);
         }
