@@ -6626,7 +6626,7 @@ var BaseGridSerializingSession = /** @class */ (function () {
     BaseGridSerializingSession.prototype.extractRowCellValue = function (column, index, accumulatedRowIndex, type, node) {
         // we render the group summary text e.g. "-> Parent -> Child"...
         var groupIndex = this.gridOptionsWrapper.isGroupMultiAutoColumn() ? node.rowGroupIndex : 0;
-        var renderGroupSummaryCell = 
+        var renderGroupSummaryCell =
         // on group rows
         node && node.group
             && (
@@ -38856,7 +38856,7 @@ var HistogramSeries = /** @class */ (function (_super) {
         var _c = this.label, _d = _c.formatter, labelFormatter = _d === void 0 ? defaultLabelFormatter : _d, labelFontStyle = _c.fontStyle, labelFontWeight = _c.fontWeight, labelFontSize = _c.fontSize, labelFontFamily = _c.fontFamily, labelColor = _c.color;
         this.binnedData.forEach(function (binOfData) {
             var total = binOfData.aggregatedValue, frequency = binOfData.frequency, _a = __read$w(binOfData.domain, 2), xDomainMin = _a[0], xDomainMax = _a[1], relativeHeight = binOfData.relativeHeight;
-            var xMinPx = xScale.convert(xDomainMin), xMaxPx = xScale.convert(xDomainMax), 
+            var xMinPx = xScale.convert(xDomainMin), xMaxPx = xScale.convert(xDomainMax),
             // note: assuming can't be negative:
             y = _this.areaPlot ? relativeHeight : (_this.yKey ? total : frequency), yZeroPx = yScale.convert(0), yMaxPx = yScale.convert(y), w = xMaxPx - xMinPx, h = Math.abs(yMaxPx - yZeroPx);
             var selectionDatumLabel = y !== 0 ? {
@@ -42113,7 +42113,7 @@ var __assign$a = (undefined && undefined.__assign) || function () {
     return __assign$a.apply(this, arguments);
 };
 var _a, _b, _c, _d, _e;
-// type RecursiveMapping<T> = 
+// type RecursiveMapping<T> =
 //     T extends Primitive | Array<Primitive> ? T :
 //     T extends Array<infer E> ? Mapping<E> :
 //     (
@@ -42121,7 +42121,7 @@ var _a, _b, _c, _d, _e;
 //             {[key: string]: Mapping<T>} | { [P in keyof T]?: T[P] | Mapping<T[P]> | {}; } :
 //         { [P in keyof T]?: T[P] | Mapping<T[P]> | {}; }
 //     ) & BaseDefinition<T>;
-// type PropertyMapping<T> = 
+// type PropertyMapping<T> =
 //     T extends Primitive | Array<Primitive> ? T :
 //     T extends Array<infer E> ? Mapping<E> :
 // type Mapping<T> = {};
@@ -50084,7 +50084,7 @@ var RangeService = /** @class */ (function (_super) {
         var cellRange;
         for (var i = 0; i < this.cellRanges.length; i++) {
             var range = this.cellRanges[i];
-            var matches = 
+            var matches =
             // check cols are same
             (range.columns && range.columns.length === 1 && range.columns[0] === cell.column) &&
                 // check rows are same
@@ -50426,10 +50426,10 @@ var RangeService = /** @class */ (function (_super) {
         }
         // The DragService used by the this service (RangeService), automatically adds a `mousemove`
         // listener the document of the page that will then call `onDragging`. If you are in a shadow DOM
-        // DOM elements outside your component's wrapper will be inaccessible to you, so here, we add a 
+        // DOM elements outside your component's wrapper will be inaccessible to you, so here, we add a
         // temporary `mousemove` listener to the gridPanel to be able to update the last hovered cell.
         this.cellHoverListener = this.addManagedListener(this.ctrlsService.getGridCtrl().getGui(), 'mousemove', this.updateValuesOnMove.bind(this));
-        // This is the mouse start event, so we need to call `updateValuesOnMove` 
+        // This is the mouse start event, so we need to call `updateValuesOnMove`
         // manually once to get the necessary variables initiated.
         this.updateValuesOnMove(mouseEvent);
         if (!this.lastCellHovered) {
@@ -52055,7 +52055,7 @@ var EnterpriseMenu = /** @class */ (function (_super) {
         var pivotModeOn = this.columnModel.isPivotMode();
         var isInMemoryRowModel = this.rowModel.getType() === agGridCommunity.Constants.ROW_MODEL_TYPE_CLIENT_SIDE;
         var usingTreeData = this.gridOptionsWrapper.isTreeData();
-        var allowValueAgg = 
+        var allowValueAgg =
         // if primary, then only allow aggValue if grouping and it's a value columns
         (isPrimary && doingGrouping && allowValue)
             // secondary columns can always have aggValue, as it means it's a pivot value column
@@ -53306,7 +53306,7 @@ var MultiFloatingFilterComp = /** @class */ (function (_super) {
         var filterParams = params.filterParams;
         var floatingFilterPromises = [];
         MultiFilter.getFilterDefs(filterParams).forEach(function (filterDef, index) {
-            var floatingFilterParams = __assign$p(__assign$p({}, params), { 
+            var floatingFilterParams = __assign$p(__assign$p({}, params), {
                 // set the parent filter instance for each floating filter to the relevant child filter instance
                 parentFilterInstance: function (callback) {
                     _this.parentMultiFilterInstance(function (parent) {
@@ -56089,7 +56089,7 @@ var __decorate$1K = (undefined && undefined.__decorate) || function (decorators,
 var FullStore = /** @class */ (function (_super) {
     __extends$3f(FullStore, _super);
     function FullStore(ssrmParams, storeParams, parentRowNode) {
-        var _this = 
+        var _this =
         // finite block represents a cache with just one block, thus 0 is the id, it's the first block
         _super.call(this, 0) || this;
         _this.nodeIdSequence = new agGridCommunity.NumberSequence();
@@ -57096,9 +57096,17 @@ var SetValueModel = /** @class */ (function () {
         this.displayedValues = [];
         // to allow for case insensitive searches, upper-case both filter text and value
         var formattedFilterText = this.caseFormat(this.formatter(this.miniFilterText) || '');
-        var matchesFilter = function (valueToCheck) {
+        if (formattedFilterText.indexOf(',') >= 0) {
+          var matchesFilter = function (valueToCheck) {
+            return valueToCheck != null && formattedFilterText.split(',').some(i => {
+              return _this.caseFormat(valueToCheck).indexOf(i.trim()) >= 0
+            });
+          };
+        } else {
+          var matchesFilter = function (valueToCheck) {
             return valueToCheck != null && _this.caseFormat(valueToCheck).indexOf(formattedFilterText) >= 0;
-        };
+          };
+        }
         this.availableValues.forEach(function (value) {
             if (value == null) {
                 if (_this.filterParams.excelMode && matchesFilter(_this.translate('blanks'))) {
@@ -58007,7 +58015,8 @@ var SetFilter = /** @class */ (function (_super) {
         agGridCommunity.Autowired('valueFormatterService')
     ], SetFilter.prototype, "valueFormatterService", void 0);
     return SetFilter;
-}(agGridCommunity.ProvidedFilter));
+}(agGridCommunity.ProvidedFilter)
+);
 var ModelWrapper = /** @class */ (function () {
     function ModelWrapper(model) {
         this.model = model;
