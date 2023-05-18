@@ -7,6 +7,7 @@
 'use strict';
 
 Object.defineProperty(exports, '__esModule', { value: true });
+console.log('q1');
 
 var agGridCommunity = require('ag-grid-community');
 
