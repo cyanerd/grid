@@ -57099,7 +57099,7 @@ var SetValueModel = /** @class */ (function () {
         if (formattedFilterText.indexOf(',') >= 0) {
           var matchesFilter = function (valueToCheck) {
             return valueToCheck != null && formattedFilterText.split(',').some(i => {
-              return _this.caseFormat(valueToCheck).indexOf(i.trim()) >= 0
+              return i.trim().length && _this.caseFormat(valueToCheck).indexOf(i.trim()) >= 0
             });
           };
         } else {
